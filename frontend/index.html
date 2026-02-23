@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Premium Sticky Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 class="app-title">🗒️ My Sticky Board</h1>
+
+<div class="board" id="board"></div>
+
+<!-- Floating Button -->
+<button class="fab" onclick="openModal()">+</button>
+
+<!-- Modal -->
+<div class="modal" id="noteModal">
+  <div class="modal-content">
+
+    <h2>Create Sticky Note</h2>
+
+    <input type="text" id="title" placeholder="Title (optional)">
+    <textarea id="body" placeholder="Write your note..."></textarea>
+    <input type="date" id="date">
+    <input type="file" id="image" accept="image/*">
+    <input type="text" id="tags" placeholder="Tags (comma separated)">
+    
+    <label>Pick Color 🎨</label>
+    <input type="color" id="color" value="#fff176">
+
+    <div class="modal-buttons">
+      <button class="save" onclick="addNote()">Add</button>
+      <button class="cancel" onclick="closeModal()">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
