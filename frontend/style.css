@@ -1,62 +1,22 @@
 body {
   margin:0;
   font-family: 'Segoe UI', sans-serif;
-
-  /* 🎨 Vintage crumpled brown paper texture */
-  background-color: #8b5e3c;
+  background: #7b4f2c;
   background-image:
-    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.15) 0%, transparent 40%),
-    radial-gradient(circle at 75% 60%, rgba(0,0,0,0.15) 0%, transparent 40%),
-    radial-gradient(circle at 50% 90%, rgba(255,255,255,0.08) 0%, transparent 40%),
     repeating-linear-gradient(
       45deg,
-      rgba(255,255,255,0.03) 0px,
-      rgba(255,255,255,0.03) 2px,
-      transparent 2px,
-      transparent 6px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      rgba(0,0,0,0.03) 0px,
-      rgba(0,0,0,0.03) 2px,
+      rgba(255,255,255,0.02) 0px,
+      rgba(255,255,255,0.02) 2px,
       transparent 2px,
       transparent 6px
     );
-
-  background-blend-mode: overlay;
 }
 
-/* ========================= */
-/* TITLE - SOFT GOLD GLOW */
-/* ========================= */
-
+/* Title */
 .app-title{
   text-align:center;
-  color:#fff8e1;
+  color:white;
   margin-top:20px;
-  letter-spacing:1px;
-
-  text-shadow:
-    0 0 5px rgba(255,223,128,0.8),
-    0 0 15px rgba(255,183,77,0.7),
-    0 0 25px rgba(255,140,0,0.6);
-
-  animation: luxuryGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes luxuryGlow{
-  from{
-    text-shadow:
-      0 0 5px rgba(255,223,128,0.8),
-      0 0 15px rgba(255,183,77,0.7),
-      0 0 25px rgba(255,140,0,0.6);
-  }
-  to{
-    text-shadow:
-      0 0 10px rgba(255,248,200,0.9),
-      0 0 25px rgba(255,193,7,0.8),
-      0 0 40px rgba(255,152,0,0.7);
-  }
 }
 
 /* Board */
@@ -67,58 +27,46 @@ body {
   overflow:hidden;
 }
 
-/* ========================= */
-/* STICKY NOTE - PREMIUM */
-/* ========================= */
-
+/* Sticky Note */
 .note{
   position:absolute;
   width:220px;
   min-height:150px;
   padding:15px;
   border-radius:8px;
-
-  /* Real paper look */
-  background: linear-gradient(145deg, #fff9c4, #fff176);
-  box-shadow:
-    0 10px 25px rgba(0,0,0,0.4),
-    inset 0 0 20px rgba(255,255,255,0.4);
-
+  box-shadow:0 8px 15px rgba(0,0,0,0.3);
   cursor:grab;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   animation: paste 0.5s ease;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,0.02) 0px,
+      rgba(0,0,0,0.02) 2px,
+      transparent 2px,
+      transparent 6px
+    );
 }
 
-/* Subtle depth lift */
+/* 📌 Add Pin Emoji Automatically */
+.note::before{
+  content:"📌";
+  position:absolute;
+  top:-15px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:22px;
+}
+
+/* Hover */
 .note:hover{
-  transform: rotate(1deg) scale(1.05);
-  box-shadow:
-    0 15px 35px rgba(0,0,0,0.5),
-    inset 0 0 25px rgba(255,255,255,0.5);
-}
-
-/* ✨ Text fade animation */
-.note h3,
-.note p,
-.note textarea{
-  animation: textFade 0.6s ease;
-}
-
-@keyframes textFade{
-  from{
-    opacity:0;
-    transform: translateY(10px);
-  }
-  to{
-    opacity:1;
-    transform: translateY(0);
-  }
+  transform: rotate(1deg) scale(1.03);
 }
 
 /* Paste Animation */
 @keyframes paste{
   from{
-    transform: scale(0) rotate(-12deg);
+    transform: scale(0) rotate(-10deg);
     opacity:0;
   }
   to{
@@ -137,7 +85,6 @@ body {
 
 .note h3{
   margin:0 0 5px;
-  font-weight:600;
 }
 
 .note img{
@@ -161,25 +108,10 @@ body {
 .actions button{
   font-size:16px;
   border:none;
-  background:#ffffff;
+  background:white;
   padding:5px 8px;
   border-radius:5px;
   cursor:pointer;
-  transition:0.2s ease;
-}
-
-.actions button:hover{
-  transform:scale(1.1);
-  box-shadow:0 3px 10px rgba(0,0,0,0.2);
-}
-
-/* Pin Emoji */
-.pin{
-  position:absolute;
-  top:-14px;
-  right:8px;
-  font-size:22px;
-  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.4));
 }
 
 /* Floating Button */
@@ -190,44 +122,59 @@ body {
   width:60px;
   height:60px;
   border-radius:50%;
-  background: linear-gradient(145deg, #ff9800, #f57c00);
+  background:#ff9800;
   color:white;
   font-size:30px;
   border:none;
   cursor:pointer;
-  box-shadow:0 8px 20px rgba(0,0,0,0.4);
-  transition:0.3s ease;
-}
-
-.fab:hover{
-  transform:scale(1.1);
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
 }
 
 /* Modal */
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.5);
-  backdrop-filter: blur(4px);
+  background:rgba(0,0,0,0.4);
+  backdrop-filter: blur(5px);
   display:none;
   justify-content:center;
   align-items:center;
 }
 
+/* 🎨 Colorful Modal Box */
 .modal-content{
-  background:#fff8dc;
+  background:linear-gradient(135deg,#fff9c4,#ffe082);
   padding:25px;
   border-radius:10px;
   width:90%;
   max-width:400px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.5);
 }
 
+/* 🎨 Colorful Inputs */
 .modal-content input,
 .modal-content textarea{
   width:100%;
   margin-top:10px;
   padding:8px;
+  border-radius:6px;
+  border:2px solid #ffb74d;
+  outline:none;
+  transition:0.3s;
+  background:#fffde7;
+}
+
+/* Focus Effect */
+.modal-content input:focus,
+.modal-content textarea:focus{
+  border-color:#ff7043;
+  box-shadow:0 0 8px rgba(255,112,67,0.4);
+}
+
+/* Modal Buttons */
+.modal-buttons{
+  margin-top:15px;
+  display:flex;
+  justify-content:space-between;
 }
 
 /* Responsive */
