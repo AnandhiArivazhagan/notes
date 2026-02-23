@@ -2,47 +2,60 @@ body {
   margin:0;
   font-family: 'Segoe UI', sans-serif;
 
-  /* ✨ Paper crumpled effect */
-  background: #7b4f2c;
+  /* 🎨 Vintage crumpled brown paper texture */
+  background-color: #8b5e3c;
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 2%, transparent 20%),
-    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.05) 2%, transparent 25%),
-    radial-gradient(circle at 40% 80%, rgba(0,0,0,0.06) 2%, transparent 25%),
+    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.15) 0%, transparent 40%),
+    radial-gradient(circle at 75% 60%, rgba(0,0,0,0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(255,255,255,0.08) 0%, transparent 40%),
     repeating-linear-gradient(
       45deg,
-      rgba(255,255,255,0.02) 0px,
-      rgba(255,255,255,0.02) 2px,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0,0,0,0.03) 0px,
+      rgba(0,0,0,0.03) 2px,
       transparent 2px,
       transparent 6px
     );
+
+  background-blend-mode: overlay;
 }
 
-/* Title */
+/* ========================= */
+/* TITLE - SOFT GOLD GLOW */
+/* ========================= */
+
 .app-title{
   text-align:center;
-  color:white;
+  color:#fff8e1;
   margin-top:20px;
+  letter-spacing:1px;
 
-  /* ✨ Glowing animation */
   text-shadow:
-    0 0 5px #ffd27f,
-    0 0 10px #ffb347,
-    0 0 20px #ff9800;
-  animation: glowPulse 2s ease-in-out infinite alternate;
+    0 0 5px rgba(255,223,128,0.8),
+    0 0 15px rgba(255,183,77,0.7),
+    0 0 25px rgba(255,140,0,0.6);
+
+  animation: luxuryGlow 3s ease-in-out infinite alternate;
 }
 
-@keyframes glowPulse{
+@keyframes luxuryGlow{
   from{
     text-shadow:
-      0 0 5px #ffd27f,
-      0 0 10px #ffb347,
-      0 0 20px #ff9800;
+      0 0 5px rgba(255,223,128,0.8),
+      0 0 15px rgba(255,183,77,0.7),
+      0 0 25px rgba(255,140,0,0.6);
   }
   to{
     text-shadow:
-      0 0 10px #fff176,
-      0 0 20px #ffa726,
-      0 0 30px #ff7043;
+      0 0 10px rgba(255,248,200,0.9),
+      0 0 25px rgba(255,193,7,0.8),
+      0 0 40px rgba(255,152,0,0.7);
   }
 }
 
@@ -54,36 +67,37 @@ body {
   overflow:hidden;
 }
 
-/* Sticky Note */
+/* ========================= */
+/* STICKY NOTE - PREMIUM */
+/* ========================= */
+
 .note{
   position:absolute;
   width:220px;
   min-height:150px;
   padding:15px;
   border-radius:8px;
-  box-shadow:0 8px 15px rgba(0,0,0,0.3);
+
+  /* Real paper look */
+  background: linear-gradient(145deg, #fff9c4, #fff176);
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.4),
+    inset 0 0 20px rgba(255,255,255,0.4);
+
   cursor:grab;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: paste 0.5s ease;
-
-  /* Soft paper texture */
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(0,0,0,0.02) 0px,
-      rgba(0,0,0,0.02) 2px,
-      transparent 2px,
-      transparent 6px
-    );
 }
 
-/* ✨ Soft hover glow */
+/* Subtle depth lift */
 .note:hover{
-  transform: rotate(1deg) scale(1.03);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+  transform: rotate(1deg) scale(1.05);
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.5),
+    inset 0 0 25px rgba(255,255,255,0.5);
 }
 
-/* ✨ Note text animation */
+/* ✨ Text fade animation */
 .note h3,
 .note p,
 .note textarea{
@@ -93,7 +107,7 @@ body {
 @keyframes textFade{
   from{
     opacity:0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   to{
     opacity:1;
@@ -104,7 +118,7 @@ body {
 /* Paste Animation */
 @keyframes paste{
   from{
-    transform: scale(0) rotate(-10deg);
+    transform: scale(0) rotate(-12deg);
     opacity:0;
   }
   to{
@@ -123,6 +137,7 @@ body {
 
 .note h3{
   margin:0 0 5px;
+  font-weight:600;
 }
 
 .note img{
@@ -146,7 +161,7 @@ body {
 .actions button{
   font-size:16px;
   border:none;
-  background:white;
+  background:#ffffff;
   padding:5px 8px;
   border-radius:5px;
   cursor:pointer;
@@ -155,14 +170,16 @@ body {
 
 .actions button:hover{
   transform:scale(1.1);
+  box-shadow:0 3px 10px rgba(0,0,0,0.2);
 }
 
 /* Pin Emoji */
 .pin{
   position:absolute;
-  top:-12px;
-  right:5px;
+  top:-14px;
+  right:8px;
   font-size:22px;
+  filter: drop-shadow(0 3px 5px rgba(0,0,0,0.4));
 }
 
 /* Floating Button */
@@ -173,12 +190,12 @@ body {
   width:60px;
   height:60px;
   border-radius:50%;
-  background:#ff9800;
+  background: linear-gradient(145deg, #ff9800, #f57c00);
   color:white;
   font-size:30px;
   border:none;
   cursor:pointer;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
   transition:0.3s ease;
 }
 
@@ -190,20 +207,20 @@ body {
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter: blur(5px);
+  background:rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
   display:none;
   justify-content:center;
   align-items:center;
 }
 
 .modal-content{
-  background:#fff9c4;
+  background:#fff8dc;
   padding:25px;
   border-radius:10px;
   width:90%;
   max-width:400px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  box-shadow:0 15px 35px rgba(0,0,0,0.5);
 }
 
 .modal-content input,
@@ -211,12 +228,6 @@ body {
   width:100%;
   margin-top:10px;
   padding:8px;
-}
-
-.modal-buttons{
-  margin-top:15px;
-  display:flex;
-  justify-content:space-between;
 }
 
 /* Responsive */
