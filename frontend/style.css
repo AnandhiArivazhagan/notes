@@ -1,8 +1,13 @@
 body {
   margin:0;
   font-family: 'Segoe UI', sans-serif;
+
+  /* ✨ Paper crumpled effect */
   background: #7b4f2c;
   background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 2%, transparent 20%),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.05) 2%, transparent 25%),
+    radial-gradient(circle at 40% 80%, rgba(0,0,0,0.06) 2%, transparent 25%),
     repeating-linear-gradient(
       45deg,
       rgba(255,255,255,0.02) 0px,
@@ -17,6 +22,28 @@ body {
   text-align:center;
   color:white;
   margin-top:20px;
+
+  /* ✨ Glowing animation */
+  text-shadow:
+    0 0 5px #ffd27f,
+    0 0 10px #ffb347,
+    0 0 20px #ff9800;
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse{
+  from{
+    text-shadow:
+      0 0 5px #ffd27f,
+      0 0 10px #ffb347,
+      0 0 20px #ff9800;
+  }
+  to{
+    text-shadow:
+      0 0 10px #fff176,
+      0 0 20px #ffa726,
+      0 0 30px #ff7043;
+  }
 }
 
 /* Board */
@@ -38,6 +65,8 @@ body {
   cursor:grab;
   transition: transform 0.3s ease;
   animation: paste 0.5s ease;
+
+  /* Soft paper texture */
   background-image:
     repeating-linear-gradient(
       0deg,
@@ -48,8 +77,28 @@ body {
     );
 }
 
+/* ✨ Soft hover glow */
 .note:hover{
   transform: rotate(1deg) scale(1.03);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.4);
+}
+
+/* ✨ Note text animation */
+.note h3,
+.note p,
+.note textarea{
+  animation: textFade 0.6s ease;
+}
+
+@keyframes textFade{
+  from{
+    opacity:0;
+    transform: translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
 }
 
 /* Paste Animation */
@@ -101,6 +150,11 @@ body {
   padding:5px 8px;
   border-radius:5px;
   cursor:pointer;
+  transition:0.2s ease;
+}
+
+.actions button:hover{
+  transform:scale(1.1);
 }
 
 /* Pin Emoji */
@@ -125,6 +179,11 @@ body {
   border:none;
   cursor:pointer;
   box-shadow:0 5px 15px rgba(0,0,0,0.3);
+  transition:0.3s ease;
+}
+
+.fab:hover{
+  transform:scale(1.1);
 }
 
 /* Modal */
@@ -144,6 +203,7 @@ body {
   border-radius:10px;
   width:90%;
   max-width:400px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
 
 .modal-content input,
