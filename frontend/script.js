@@ -1,5 +1,5 @@
 const board = document.getElementById("board");
-const API_URL = "http://localhost:3000/notes";
+const API_URL = "https://notes-j22w.onrender.com/notes";
 
 /* ===============================
    LOAD NOTES FROM DATABASE

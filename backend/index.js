@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json({ limit: "10mb" })); // important for base64 images
 app.use(cors());
 
-mongoose.connect("mongodb+srv://Anandhi:anandhi_2005@cluster0.favzmu6.mongodb.net/stickyDB")
+mongoose.connect("mongodb+srv://Anandhi:anandhi_2005@cluster0.favzmu6.mongodb.net/notesDB?appName=Cluster0")
   .then(() => console.log("✅ Connected to MongoDB Atlas"))
   .catch(err => console.log(err));
 
