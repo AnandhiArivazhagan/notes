@@ -69,7 +69,9 @@ function createNoteElement(noteData) {
 
   const note = document.createElement("div");
   note.className = "note";
-  note.style.backgroundColor = noteData.color;
+  note.style.backgroundColor = noteData.color || "#caff90";
+
+  // Random position (inside board)
   note.style.left = Math.random() * 70 + "%";
   note.style.top = Math.random() * 60 + "%";
 
@@ -94,13 +96,58 @@ function createNoteElement(noteData) {
   del.innerHTML = "🗑️";
   del.onclick = async () => {
     await fetch(`${API_URL}/${noteData._id}`, { method: "DELETE" });
-    note.remove();
+    note.style.animation = "peel 0.4s forwards";
+    setTimeout(() => note.remove(), 400);
   };
 
   actions.appendChild(del);
   note.appendChild(actions);
 
+  // 🔥 Enable Drag
+  makeDraggable(note);
+
   board.appendChild(note);
+}
+
+/* ===============================
+   DRAG FUNCTION
+=================================*/
+
+function makeDraggable(note) {
+
+  let offsetX = 0;
+  let offsetY = 0;
+  let isDragging = false;
+
+  note.addEventListener("mousedown", (e) => {
+    isDragging = true;
+
+    offsetX = e.clientX - note.offsetLeft;
+    offsetY = e.clientY - note.offsetTop;
+
+    note.style.zIndex = 1000;
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    const boardRect = board.getBoundingClientRect();
+
+    let x = e.clientX - offsetX - boardRect.left;
+    let y = e.clientY - offsetY - boardRect.top;
+
+    // Keep inside board boundaries
+    x = Math.max(0, Math.min(x, boardRect.width - note.offsetWidth));
+    y = Math.max(0, Math.min(y, boardRect.height - note.offsetHeight));
+
+    note.style.left = x + "px";
+    note.style.top = y + "px";
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+    note.style.zIndex = "";
+  });
 }
 
 /* ===============================
