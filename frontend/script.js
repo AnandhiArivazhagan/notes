@@ -153,7 +153,7 @@ function makeDraggable(note) {
 /* ===============================
    HELPER
 =================================*/
-
+// Convert file to base64 string
 function toBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
